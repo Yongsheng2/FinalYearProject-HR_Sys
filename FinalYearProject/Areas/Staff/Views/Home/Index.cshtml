@@ -1,0 +1,53 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    <ul>
+        <li>
+            <a asp-action="Index" asp-controller="Employee" asp-area="Staff">Staff</a>
+        </li>
+        <li>
+            <a asp-action="Index" asp-controller="Rating" asp-area="Staff">Staff Rating</a>
+        </li>
+        <li>
+            <a asp-action="Index" asp-controller="LeaveApply" asp-area="Staff">Apply Leave</a>
+        </li>
+        <li>
+            <a asp-action="Index" asp-controller="LeaveApprove" asp-area="Staff">Approve Leave</a>
+        </li>
+        <li>
+            <a asp-action="Index" asp-controller="Role" asp-area="Staff">Role</a>
+        </li>
+        <li>
+            <a asp-action="Index" asp-controller="Admin" asp-area="Admin">Admin</a>
+        </li>
+        <li>
+            <a asp-action="Index" asp-controller="Company" asp-area="Admin">Company</a>
+        </li>
+        <li>
+            <a asp-action="Index" asp-controller="Shift" asp-area="Staff">Shift</a>
+        </li>
+        <li>
+            <a asp-action="Index" asp-controller="Payroll" asp-area="Staff">Payroll</a>
+        </li>
+        <li>
+            <a asp-action="ViewPayrate" asp-controller="Payroll" asp-area="Staff">Payrate</a>
+        </li>
+        <li>
+            <a asp-action="Index" asp-controller="Training" asp-area="Staff">Training</a>
+        </li>
+        <li>
+            <a asp-action="CreateQRCode" asp-controller="Shift" asp-area="Staff">QR CODE</a>
+        </li>
+        <li>
+            <a asp-action="ViewPayroll" asp-controller="Payroll" asp-area="Staff">View Own Payroll</a>
+        </li>
+        <li>
+            <a asp-action="ViewTraining" asp-controller="Training" asp-area="Staff">View Training</a>
+        </li>
+
+    </ul>
+</div>

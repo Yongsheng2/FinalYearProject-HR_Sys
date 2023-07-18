@@ -1,0 +1,179 @@
+﻿@model EmployeeDetails
+
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2 class="text-info">Create</h2>
+
+<h4>Employee</h4>
+
+<hr />
+
+<div class="row">
+    <form method="post" asp-action="Create" enctype="multipart/form-data"> 
+        <div>
+            <div asp-validation-summary="All" class="text-danger"></div>
+            <input type="hidden" asp-for="paidLeaveOnBargain" />
+            <input type="hidden" asp-for="sickLeaveOnBargain" />
+            <input type="hidden" asp-for="paidLeaveHourLeft" />
+            <input type="hidden" asp-for="sickLeaveHourLeft" />
+            <input type="hidden" asp-for="wages_rate" value="0" />
+
+            <div class="form-group row">
+                <label asp-for="employee_id" class="col-form-label"></label>
+                <input asp-for="employee_id" class="form-control" readonly/>
+                <span asp-validation-for="employee_id" class="text-danger"></span>
+            </div>
+            <div class="form-group row">
+                <label asp-for="parent_company" class="col-form-label"></label>
+                <select id="ddlCompany" asp-for="parent_company" class="form-control" asp-items="ViewBag.parent_company"></select>
+            </div>
+            <div class="form-group row">
+                <label asp-for="employee_id_by_company" class="col-form-label"></label>
+                <input asp-for="employee_id_by_company" class="form-control" id="companyEmployeeId" readonly />
+                <span asp-validation-for="employee_id_by_company" class="text-danger"></span>
+            </div>
+            <div class="form-group row">
+                <label asp-for="employee_name" class="col-form-label"></label>
+                <input asp-for="employee_name" class="form-control" />
+                <span asp-validation-for="employee_name" class="text-danger"></span>
+            </div>
+            <div class="form-group row">
+                <label asp-for="profileImg_path" class="col-form-label"></label>
+                <input type="file" name="profPic" class="form-control" />
+            </div>
+            <div class="form-group row">
+                <label asp-for="user_id" class="col-form-label"></label>
+                <input asp-for="user_id" class="form-control" />
+                <span asp-validation-for="user_id" class="text-danger"></span>
+            </div>
+            <div class="form-group row">
+                <label asp-for="acc_pass" class="col-form-label"></label>
+                <input asp-for="acc_pass" class="form-control" type="password"/>
+                <span asp-validation-for="acc_pass" class="text-danger"></span>
+            </div>
+             <div class="form-group row">
+                <label asp-for="staff_role" class="col-form-label"></label>
+                <select asp-for="staff_role" class="form-control" asp-items="ViewBag.staff_role"></select>
+            </div>
+            <div class="form-group row">
+                <label asp-for="employer_id" class="col-form-label"></label>
+                <select id="ddlEmployer"  asp-for="employer_id" class="form-control"></select>
+            </div>
+            <div class="form-group row">
+                <label asp-for="employment_start_date" class="col-form-label"></label>
+                <input asp-for="employment_start_date" class="form-control" value="@DateTime.Today.ToString("yyyy-MM-dd")" type="date" />
+                <span asp-validation-for="employment_start_date" class="text-danger"></span>
+            </div>
+            <div class="form-group row">
+                <label asp-for="bank_name" class="col-form-label"></label>
+                <input asp-for="bank_name" class="form-control" />
+                <span asp-validation-for="bank_name" class="text-danger"></span>
+            </div>
+            <div class="form-group row">
+                <label asp-for="bank_no" class="col-form-label"></label>
+                <input asp-for="bank_no" class="form-control" />
+                <span asp-validation-for="bank_no" class="text-danger"></span>
+            </div>
+            <div class="form-group row">
+                <label asp-for="dob" class="col-form-label"></label>
+                <input asp-for="dob" class="form-control" type="date" />
+                <span asp-validation-for="dob" class="text-danger"></span>
+            </div>
+            <div class="form-group row">
+                <label asp-for="email" class="col-form-label"></label>
+                <input asp-for="email" class="form-control" />
+                <span asp-validation-for="email" class="text-danger"></span>
+            </div>
+            <div class="form-group row">
+                <label asp-for="epf_no" class="col-form-label"></label>
+                <input asp-for="epf_no" class="form-control" />
+                <span asp-validation-for="epf_no" class="text-danger"></span>
+            </div>
+            <div class="form-group row">
+                <label asp-for="gender" class="col-form-label"></label>
+                <select asp-for="gender" class="form-control" asp-items="ViewBag.gender"></select>
+            </div>
+            <div class="form-group row">
+                <label asp-for="ic_no" class="col-form-label"></label>
+                <input asp-for="ic_no" class="form-control" />
+                <span asp-validation-for="ic_no" class="text-danger"></span>
+            </div>
+            <div class="form-group row">
+                <label asp-for="itax_no" class="col-form-label"></label>
+                <input asp-for="itax_no" class="form-control" />
+                <span asp-validation-for="itax_no" class="text-danger"></span>
+            </div>
+            <div class="form-group row">
+                <label asp-for="nationality" class="col-form-label"></label>
+                <select asp-for="nationality" class="form-control" asp-items="ViewBag.nationality"></select>
+            </div>
+            <div class="form-group row">
+                <label asp-for="phone_no" class="col-form-label"></label>
+                <input asp-for="phone_no" class="form-control" />
+                <span asp-validation-for="phone_no" class="text-danger"></span>
+            </div>
+            <div class="form-group row">
+                <label asp-for="sosco_no" class="col-form-label"></label>
+                <input asp-for="sosco_no" class="form-control" />
+                <span asp-validation-for="sosco_no" class="text-danger"></span>
+            </div>
+            <div class="form-group row">
+                <label asp-for="religion" class="col-form-label"></label>
+                <select id="ddlReligion" asp-for="religion" class="form-control" asp-items="ViewBag.religion"></select>
+            </div>
+        </div>
+        <br />
+        <div class="form-group row">
+            <div class="row">
+                <div class="col-5">
+                    <partial name="_CreateBackPartial"></partial>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+
+    <script>
+        $(document).ready(function () {
+            getEmployer();
+            getCompanyEmployeeID();
+            $('#ddlCompany').change(function () {
+                getEmployer();
+                getCompanyEmployeeID();
+            });
+        });
+
+        function getEmployer() {
+            console.log("Function Triggered");
+            var url = '@Url.Content("~/")' + "Staff/Employee/GetEmployer";
+            var ddlsource = '#ddlCompany';
+            $.getJSON(url, {id: $(ddlsource).val()}, function (data){
+                var items = '';
+                $('#ddlEmployer').empty();
+                $.each(data, function (i, employer) {
+                    items += "<option value='" + employer.value + "'>" + employer.text + "</option>";
+                });
+
+                $('#ddlEmployer').html(items);
+            });
+        }
+
+        function getCompanyEmployeeID() {
+            console.log("Function Triggered");
+            var url = '@Url.Content("~/")' + "Staff/Employee/GenerateCompanyEmployeeID"
+            var ddlsource = '#ddlCompany';
+            $.getJSON(url, { companyID: $(ddlsource).val() }, function (data) {
+                console.log(data);
+                document.getElementById("companyEmployeeId").value = data;
+            });
+        }
+    </script>
+}

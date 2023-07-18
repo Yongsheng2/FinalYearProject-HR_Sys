@@ -1,0 +1,57 @@
+﻿@model FinalYearProject.Models.ViewModels.EmployeeRatingVM
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div>
+    <h2>@Model.employee.employee_name</h2>
+    <a class="btn btn-danger text-white" asp-action="Create" asp-controller="Rating" asp-area="Staff" asp-route-Id="@Model.employee.employee_id">
+        Rate
+    </a>
+</div>
+
+<div>
+    <div class="row">
+        <div class="col-6">
+            <h2 class="text-info">Rating</h2>
+            <h2>@Model.averageRate</h2>
+        </div>
+    </div>
+    <div>
+        @if (Model.rating.Count() > 0)
+        {
+            <table class="table table-striped border">
+                <tr class="table-secondary">
+                    <th>
+                        @Html.DisplayNameFor(m => m.rating.First().rated_by)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(m => m.rating.First().rating)
+                    </th>
+                    <th>
+
+                    </th>
+                </tr>
+                @foreach (var item in Model.rating)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(m => item.rated_by)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(m => item.rating)
+                        </td>
+                        <td>
+                           
+                        </td>
+                    </tr>
+                }
+            </table>
+        }
+        else
+        {
+            <p>There are no rating.</p>
+        }
+    </div>
+</div>
