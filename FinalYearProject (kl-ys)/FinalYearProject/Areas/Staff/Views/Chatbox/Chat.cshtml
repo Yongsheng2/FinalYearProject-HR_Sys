@@ -1,0 +1,68 @@
+﻿@model IEnumerable<FinalYearProject.Models.ChatMessage>
+
+@{
+    ViewData["Title"] = "Chat";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<body style="margin: 0; padding: 0;">
+    <div class="container mt-5">
+        <h1>Chat</h1>
+
+        <div class="card chatbox">
+            <div class="card-body" id="chat-container" style="max-height: 400px; overflow-y: auto; background-color: #73C4F2;">
+                @foreach (var message in Model)
+                {
+                    <div class="message p-3 bg-light border">
+                        <strong>@message.send_name:</strong> @message.chat_ctn
+                        <br />
+                        <span class="timestamp text-muted">
+                            <small>(@message.timestamp.ToString("dd/MM/yyyy HH:mm:ss"))</small>
+                        </span>
+                    </div>
+                }
+            </div>
+        </div>
+
+        <form id="chat-form" method="post" action="@Url.Action("Chat", "Chatbox")" class="mt-3">
+            @Html.AntiForgeryToken()
+            <input type="hidden" name="chat_id" value="@ViewBag.ChatId" />
+            <input type="hidden" name="send_id" value="@Model.FirstOrDefault()?.send_id" />
+            <input type="hidden" name="send_userid" value="@Model.FirstOrDefault()?.send_userid" />
+            <input type="hidden" name="send_name" value="@Model.FirstOrDefault()?.send_name" />
+            <input type="hidden" name="receive_id" value="@Model.FirstOrDefault()?.receive_id" />
+            <input type="hidden" name="receive_name" value="@Model.FirstOrDefault()?.receive_name" />
+
+            <div class="input-group">
+                <input class="form-control" id="chat_ctn" name="chat_ctn" placeholder="Type your message here..." />
+                <div class="input-group-append">
+                    <button type="submit" class="btn btn-primary">Send</button>
+                </div>
+            </div>
+        </form>
+
+        <a asp-action="Index" class="btn btn-secondary mt-3">Back to list</a>
+    </div>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="..." crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="..." crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="..."
+            crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="..."
+            crossorigin="anonymous"></script>
+    <style>
+        .message {
+            margin-bottom: 15px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        .message strong {
+                color: #0069A9;
+            }
+
+        .timestamp {
+            font-size: 12px;
+            color: #0069A9;
+        }
+    </style>
+</body>

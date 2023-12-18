@@ -1,0 +1,124 @@
+﻿@model FinalYearProject.Models.ViewModels.RatingListVM
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div>
+    @if (Model.employeesRating.Count() > 0)
+    {
+        <a class="btn btn-danger text-white" asp-action="ViewOwn" asp-controller="Rating" asp-area="Staff">
+            View Your Own Rating
+    </a>
+        }
+</div>
+
+<div>
+    <div class="row">
+        <div class="col-6">
+            <h2 class="text-info">Employee Under Your Lead</h2>
+        </div>
+    </div>
+    <div>
+        @if (Model.employeesRating.Count() > 0)
+        {
+            <table class="table table-striped border">
+                <tr class="table-secondary">
+                    <th>
+                        @Html.DisplayNameFor(m => m.employeesRating.First().employee.employee_id)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(m => m.employeesRating.First().employee.employee_name)
+                    </th>
+                    <th>
+                        Total Rate
+                    </th>
+                    <th>
+                        Average Rating
+                    </th>
+                    <th>
+
+                    </th>
+                </tr>
+                @foreach (var item in Model.employeesRating)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(m => item.employee.employee_id)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(m => item.employee.employee_name)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(m => item.count)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(m => item.averageRate)
+                        </td>
+                        <td>
+                            <a class="btn btn-danger text-white" asp-action="Details" asp-controller="Rating" asp-area="Staff" asp-route-Id="@item.employee.employee_id">
+                                View
+                            </a>
+                        </td>
+                    </tr>
+                }
+            </table>
+        }
+        else
+        {
+            <p>There are no employees.</p>
+        }
+    </div>
+    <div class="row">
+        <div class="col-6">
+            <h2 class="text-info">Your Employer</h2>
+        </div>
+    </div>
+    <div>
+        @if (Model.employerRating != null)
+        {
+            <table class="table table-striped border">
+                <tr class="table-secondary">
+                    <th>
+                        @Html.DisplayNameFor(m => m.employerRating.employee.employee_id)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(m => m.employerRating.employee.employee_name)
+                    </th>
+                    <th>
+                        Total Rate
+                    </th>
+                    <th>
+                        Average Rating
+                    </th>
+                    <th>
+
+                    </th>
+                </tr>
+                <tr>
+                    <td>
+                        @Html.DisplayFor(m => m.employerRating.employee.employee_id)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(m => m.employerRating.employee.employee_name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(m => m.employerRating.count)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(m => m.employerRating.averageRate)
+                    </td>
+                    <td>
+                        <a class="btn btn-danger text-white" asp-action="Details" asp-controller="Rating" asp-area="Staff" asp-route-Id="@Model.employerRating.employee.employee_id">
+                            View
+                        </a>
+                    </td>
+                </tr>
+            </table>
+        }
+        else
+        {
+            <p>There are no employers.</p>
+        }
+    </div>
+</div>

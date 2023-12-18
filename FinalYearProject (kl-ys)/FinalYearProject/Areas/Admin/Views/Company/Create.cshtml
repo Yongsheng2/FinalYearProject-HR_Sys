@@ -1,0 +1,78 @@
+﻿@model FinalYearProject.Models.Company
+
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2 class="text-info">Create</h2>
+
+<h4>Company</h4>
+
+<hr />
+
+<div class="row">
+    <form method="post" asp-action="Create">
+        <div>
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group row">
+                <label asp-for="company_id" class="col-form-label"></label>
+                <input asp-for="company_id" class="form-control" />
+                <span asp-validation-for="company_id" class="text-danger"></span>
+            </div>
+            <div class="form-group row">
+                <label asp-for="company_name" class="col-form-label"></label>
+                <input asp-for="company_name" class="form-control" />
+                <span asp-validation-for="company_name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="current_admin" class="col-form-label"></label>
+                <select asp-for="current_admin" class="form-control" asp-items="ViewBag.current_admin"></select>
+            </div>
+            <div class="form-group row">
+                <label asp-for="address" class="col-form-label"></label>
+                <input asp-for="address" class="form-control" />
+                <span asp-validation-for="address" class="text-danger"></span>
+            </div>
+            <div class="form-group row">
+                <label asp-for="longitude" class="col-form-label"></label>
+                <input asp-for="longitude" class="form-control" />
+                <span asp-validation-for="longitude" class="text-danger"></span>
+            </div>
+            <div class="form-group row">
+                <label asp-for="latitude" class="col-form-label"></label>
+                <input asp-for="latitude" class="form-control" />
+                <span asp-validation-for="latitude" class="text-danger"></span>
+            </div>
+            <div class="form-group row">
+                <label asp-for="paidLeaveYearly" class="col-form-label"></label>
+                <input asp-for="paidLeaveYearly" class="form-control" />
+                <span asp-validation-for="paidLeaveYearly" class="text-danger"></span>
+            </div>
+            <div class="form-group row">
+                <label asp-for="paidMaxCarryover" class="col-form-label"></label>
+                <input asp-for="paidMaxCarryover" class="form-control" />
+                <span asp-validation-for="paidMaxCarryover" class="text-danger"></span>
+            </div>
+            <div class="form-group row">
+                <label asp-for="sickLeaveYearly" class="col-form-label"></label>
+                <input asp-for="sickLeaveYearly" class="form-control" />
+                <span asp-validation-for="sickLeaveYearly" class="text-danger"></span>
+            </div>
+            <div class="form-group row">
+                <label asp-for="sickMaxCarryover" class="col-form-label"></label>
+                <input asp-for="sickMaxCarryover" class="form-control" />
+                <span asp-validation-for="sickMaxCarryover" class="text-danger"></span>
+            </div>
+        </div>
+        <br />
+        <div class="form-group row">
+            <div class="row">
+                <div class="col-5">
+                    <partial name="_CreateBackPartial"></partial>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+

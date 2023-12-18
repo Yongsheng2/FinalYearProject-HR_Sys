@@ -1,0 +1,25 @@
+﻿
+<!-- Your existing HTML code -->
+@if (ViewBag.PredictionResult != null)
+{
+    <h3>Prediction Result:</h3>
+    <p>Some information about the prediction result: @ViewBag.PredictionResult.PredictedLabel</p>
+}
+
+@if (ViewBag.PredictionResultReason != null)
+{
+    <h3>Prediction Result:</h3>
+    <p>Trediction result reason that employee not satisfy with the company: @ViewBag.PredictionResultReason.PredictedLabel</p>
+    <p>Confidence level: @(ViewBag.PredictionResultReason.Score[ViewBag.positionOfReason] * 100)%</p>
+
+}
+@if (ViewBag.QuestionTypeScores != null)
+{
+    <ul>
+        @foreach (var entry in ViewBag.QuestionTypeScores)
+        {
+            <li>@entry.Key: @entry.Value%</li>
+        }
+    </ul>
+}
+<!-- Continue with the rest of your HTML code -->

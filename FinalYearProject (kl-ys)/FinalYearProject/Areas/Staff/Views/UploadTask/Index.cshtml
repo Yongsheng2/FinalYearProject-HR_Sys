@@ -1,0 +1,53 @@
+﻿@model FinalYearProject.Models.ViewModels.EmployeeTaskListVM
+
+@{
+    ViewData["Title"] = "Task";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container mt-5">
+    <h1>Task</h1>
+
+    <a asp-action="Create" asp-controller="UploadTask" class="btn btn-success">
+        <span class="fa fa-plus"></span> Create New Task
+    </a>
+
+    <div class="table-responsive mt-4">
+        <table class="table table-bordered table-hover text-center align-middle">
+            <thead class="thead-dark ">
+                <tr>
+                    <th>@Html.DisplayNameFor(model => model.displayEmployeeTask.emtask_id)</th>
+                    <th>@Html.DisplayNameFor(model => model.displayEmployeeTask.emtask_title)</th>
+                    <th>@Html.DisplayNameFor(model => model.displayEmployeeTask.staff_id)</th>
+                    <th>@Html.DisplayNameFor(model => model.displayEmployeeTask.progress_status)</th>
+                    <th>@Html.DisplayNameFor(model => model.displayEmployeeTask.date_upload)</th>
+                    <th>@Html.DisplayNameFor(model => model.displayEmployeeTask.emtask_duration)</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.TaskCreated)
+                {
+                    <tr>
+                        <td>@Html.DisplayFor(modelItem => item.emtask_id)</td>
+                        <td>@Html.DisplayFor(modelItem => item.emtask_title)</td>
+                        <td>@Html.DisplayFor(modelItem => item.staff_id)</td>
+                        <td>@Html.DisplayFor(modelItem => item.progress_status)</td>
+                        <td>@Html.DisplayFor(modelItem => item.date_upload)</td>
+                        <td>@Html.DisplayFor(modelItem => item.emtask_duration)</td>
+                        <td>
+                            <div class="btn-group" role="group">
+                                <a asp-action="Edit" asp-route-id="@item.emtask_id" class="btn btn-info">Rearrange</a>
+                                <a asp-action="Delete" asp-route-id="@item.emtask_id" class="btn btn-danger">Delete</a>
+                                <a asp-action="View" asp-route-id="@item.emtask_id" class="btn btn-primary">View</a>
+                            </div>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="..." crossorigin="anonymous">

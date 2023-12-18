@@ -1,0 +1,99 @@
+﻿@model IEnumerable<FinalYearProject.Models.Payroll>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<p>
+    <a asp-action="CreatePayroll">Create New</a>
+</p>
+@if (ViewData["ErrorMessage"] != null)
+{
+    <div class="alert alert-danger">
+        @ViewData["ErrorMessage"]
+    </div>
+}
+<body>
+    <table id="example" class="table" style="width:100%">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.payroll_id)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.staff_id)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.month_salary)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.overtime_pay)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.kwsp_total)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.zakat_total)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.incentives_total)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.payback_id)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.advance_id)
+                </th>
+                
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.payroll_id)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.staff_id)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.month_salary)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.overtime_pay)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.kwsp_total)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.zakat_total)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.incentives_total)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.payback_id)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.advance_id)
+                    </td>
+
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@item.payroll_id">Edit</a> |
+                        <a asp-action="Details" asp-route-id="@item.payroll_id">Details</a> |
+                        <a asp-action="Delete" asp-route-id="@item.payroll_id">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    
+    </table>
+</body>
+</html>
+
+

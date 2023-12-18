@@ -1,0 +1,76 @@
+﻿@model IEnumerable<FinalYearProject.Models.SalaryAdvance>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div class="row">
+    <div class="col-6">
+        <h2 class="text-info">Salary Advance</h2>
+    </div>
+</div>
+
+<table class="table table-striped border">
+    <tr class="table-secondary">
+            <th>
+                Employee requested
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.reason)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.amount)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.time_to_payback)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.status)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.request_date)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ApprovedEmployeeDetails)
+            </th>
+            <th></th>
+        </tr>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.employee_id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.reason)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.amount)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.time_to_payback)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.status)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.request_date)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.approved_by)
+            </td>
+            <td>
+                <div class="btn-group" role="group">
+                    <a class="btn btn-primary text-white" asp-action="Details" asp-route-Id="@item.advance_id">
+                        <i class="fas fa-list-alt"></i>
+                    </a>
+                    <a class="btn btn-success text-white" asp-action="Edit" asp-route-Id="@item.advance_id">
+                        <i class="fas fa-edit"></i>
+                    </a>
+                    <a class="btn btn-danger text-white" asp-action="Delete" asp-route-Id="@item.advance_id">
+                        <i class="fas fa-trash-alt"></i>
+                    </a>
+                </div>
+            </td>
+        </tr>
+}
+</table>

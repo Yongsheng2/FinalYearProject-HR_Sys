@@ -1,0 +1,47 @@
+﻿@model FinalYearProject.Models.ViewModels.ChatboxVM
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container mt-5">
+    <h1 class="mb-4">Chatbox</h1>
+
+    <a asp-action="Create" asp-controller="Chatbox" class="btn btn-success">
+        <span class="fa fa-plus"></span> Create New Chat
+    </a>
+
+    <div class="table-responsive mt-4">
+        <table class="table table-bordered table-hover text-center align-middle">
+            <thead class="thead-dark">
+                <tr>
+                    <th>@Html.DisplayNameFor(model => model.displayChatbox.chat_id)</th>
+                    <th>@Html.DisplayNameFor(model => model.displayChatbox.send_name)</th>
+                    <th>@Html.DisplayNameFor(model => model.displayChatbox.receive_name)</th>
+                    <th>@Html.DisplayNameFor(model => model.displayChatbox.chat_ctn)</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.ChatCreated)
+                {
+                    <tr>
+                        <td>@Html.DisplayFor(modelItem => item.chat_id)</td>
+                        <td>@Html.DisplayFor(modelItem => item.send_name)</td>
+                        <td>@Html.DisplayFor(modelItem => item.receive_name)</td>
+                        <td>@Html.DisplayFor(modelItem => item.chat_ctn)</td>
+                        <td class="text-center align-middle">
+                            <div class="btn-group h-100" role="group">
+                                <a asp-action="Chat" asp-route-id="@item.chat_id" class="btn btn-info">Chat</a>
+                                <a asp-action="Delete" asp-route-id="@item.chat_id" class="btn btn-danger">Delete</a>
+                            </div>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="..." crossorigin="anonymous">

@@ -1,0 +1,52 @@
+﻿@model FinalYearProject.Models.ViewModels.EmployeeClaimListVM
+
+@{
+    ViewData["Title"] = "Claim";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container mt-5">
+    <h1>Claim</h1>
+
+    <a asp-action="Apply" asp-controller="ApplyClaim" asp-route-id="@Model.owner.employee_id" class="btn btn-success">
+        <span class="fa fa-plus"></span> Apply Claim
+    </a>
+
+    <div class="table-responsive mt-4">
+        <table class="table table-bordered table-hover text-center align-middle">
+            <thead class="thead-dark">
+                <tr>
+                    <th>@Html.DisplayNameFor(model => model.displayClaim.claim_id)</th>
+                    <th>@Html.DisplayNameFor(model => model.displayClaim.approval_status)</th>
+                    <th>Reject Reason</th>
+                    <th>@Html.DisplayNameFor(model => model.displayClaim.date_apply)</th>
+                    <th>@Html.DisplayNameFor(model => model.displayClaim.claimAmount)</th>
+                    <th>@Html.DisplayNameFor(model => model.displayClaim.claimFile)</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.claimApplied)
+                {
+                    <tr>
+                        <td>@Html.DisplayFor(modelItem => item.claim_id)</td>
+                        <td>@Html.DisplayFor(modelItem => item.approval_status)</td>
+                        <td>@Html.DisplayFor(modelItem => item.reject_reason)</td>
+                        <td>@Html.DisplayFor(modelItem => item.date_apply)</td>
+                        <td>@Html.DisplayFor(modelItem => item.claimAmount)</td>
+                        <td>@Html.DisplayFor(modelItem => item.claimFile)</td>
+                        <td>
+                            <div class="btn-group" role="group">
+                                <a asp-action="Edit" asp-route-id="@item.claim_id" class="btn btn-info">Edit</a>
+                                <a asp-action="Delete" asp-route-id="@item.claim_id" class="btn btn-danger">Delete</a>
+                            </div>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="..." crossorigin="anonymous">

@@ -1,0 +1,51 @@
+﻿@model FinalYearProject.Models.EmployeeClaim
+@{
+    ViewData["Title"] = "Delete";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Delete</h1>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Leave</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.EmployeeDetails)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.EmployeeDetails.employee_id)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.approval_status)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.approval_status)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.date_apply)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.date_apply)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.claim_reason)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.claim_reason)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.claimFile)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.claimFile)
+        </dd>
+    </dl>
+
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="claim_id" />
+        <input type="submit" value="Delete" class="btn btn-danger" /> |
+        <a asp-action="Index" class="btn btn-secondary">Back to list</a>
+    </form>
+</div>

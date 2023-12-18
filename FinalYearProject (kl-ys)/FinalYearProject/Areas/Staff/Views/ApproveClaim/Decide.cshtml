@@ -1,0 +1,64 @@
+﻿@model FinalYearProject.Models.EmployeeClaim
+
+@{
+    ViewData["Title"] = "Decide";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Decide</h1>
+
+<h4>Claim</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Decide">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <input type="hidden" asp-for="claim_id" />
+            <input type="hidden" asp-for="staff_id" />
+
+            <div class="form-group">
+                <strong>Staff ID:</strong> @Model.staff_id
+                <br />
+            </div>
+            <div class="form-group">
+                <label asp-for="date_apply" class="control-label"></label>
+                <input asp-for="date_apply" class="form-control" readonly />
+                <span asp-validation-for="date_apply" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="claimAmount" class="control-label"></label>
+                <input asp-for="claimAmount" class="form-control" readonly />
+                <span asp-validation-for="claimAmount" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="claim_reason" class="control-label"></label>
+                <input asp-for="claim_reason" class="form-control" readonly />
+                <span asp-validation-for="claim_reason" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="claimFile" class="control-label"></label>
+            </div>
+            <div class="form-group">
+                <a asp-action="Download" asp-route-id="@Model.claim_id" class="btn btn-primary">Download</a>
+            </div>
+            <div class="form-group">
+                <label asp-for="approval_status" class="control-label"></label>
+                <select asp-for="approval_status" class="form-control" asp-items="ViewBag.status"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="reject_reason" class="control-label"></label>
+                <input asp-for="reject_reason" class="form-control" />
+                <span asp-validation-for="reject_reason" class="text-danger"></span>
+            </div>
+            <div class="form-group" style="margin-top: 10px;">
+                <input type="submit" value="Save" asp-route-id="@Model" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index" class="btn btn-secondary mt-3">Back to list</a>
+</div>
+
