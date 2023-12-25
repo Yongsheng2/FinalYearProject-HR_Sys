@@ -1,0 +1,47 @@
+﻿<style>
+    /* Add your custom CSS styles here */
+
+    h3 {
+        color: #007BFF; /* Set the heading color to a blue shade */
+    }
+
+    p {
+        font-size: 16px; /* Increase the font size for paragraphs */
+        color: #343a40; /* Set paragraph text color to a dark shade */
+    }
+
+    ul {
+        list-style-type: none; /* Remove list bullets */
+        padding: 0; /* Remove default padding for the unordered list */
+    }
+
+    li {
+        margin-bottom: 5px; 
+        color: #28a745; 
+    }
+</style>
+
+<!-- Your existing HTML code -->
+@if (ViewBag.PredictionResult != null)
+{
+    <h3>Prediction Result:</h3>
+    <p>Are the employee is satisfied with the company? : @ViewBag.PredictionResult.PredictedLabel</p>
+}
+
+@if (ViewBag.PredictionResultReason != null)
+{
+    <h3>Prediction Result Reason:</h3>
+    <p>Reason that employee is not satisfied with the company: @ViewBag.PredictionResultReason.PredictedLabel</p>
+    <p>Confidence level: @(ViewBag.PredictionResultReason.Score[ViewBag.positionOfReason] * 100)%</p>
+}
+
+@if (ViewBag.QuestionTypeScores != null)
+{
+    <ul>
+        @foreach (var entry in ViewBag.QuestionTypeScores)
+        {
+            <li>@entry.Key: @entry.Value%</li>
+        }
+    </ul>
+}
+<!-- Continue with the rest of your HTML code -->

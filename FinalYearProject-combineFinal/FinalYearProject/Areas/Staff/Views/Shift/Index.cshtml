@@ -1,0 +1,69 @@
+﻿@model IEnumerable<FinalYearProject.Models.Shift>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Index</h1>
+
+<p>
+    <partial name="_CreateButtonPartial"></partial>
+</p>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.shift_id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.shift_start)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.shift_end)
+            </th>
+                        <th>
+                @Html.DisplayNameFor(model => model.is_overtime)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.parent_shift)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.payrate_id)
+            </th>
+
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.shift_id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.shift_start)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.shift_end)
+                </td>
+                                <td>
+                    @Html.DisplayFor(modelItem => item.is_overtime)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.parent_shift)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.payrate_id)
+                </td>
+
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.shift_id">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.shift_id">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.shift_id">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

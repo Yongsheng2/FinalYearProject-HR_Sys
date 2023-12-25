@@ -1,0 +1,125 @@
+﻿@model IEnumerable<FinalYearProject.Models.ViewModels.StaffAnswerSurveyVM>
+
+@{
+    ViewData["Title"] = "Survey Question and Answer";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+@foreach (var item in Model)
+{
+    <h1 class="text-info">Survey: @Html.DisplayFor(modelItem => item.survey_name)</h1>
+}
+<style>
+    /* Custom CSS for additional styling */
+    body {
+        background-color: #f8f9fa; /* Light gray background */
+    }
+
+    h2 {
+        color: #007bff; /* Blue header text */
+    }
+
+    table {
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Box shadow for the table */
+    }
+
+    .thead-light th {
+        background-color: #007bff; /* Blue table header background */
+        color: #ffffff; /* White text on the table header */
+    }
+
+    label {
+        color: #000000; /* White text on radio button labels */
+        padding: 5px;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+    input[type="radio"] {
+        appearance: none;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        width: 15px;
+        height: 15px;
+        border: 2px solid #007bff; /* Blue border for radio buttons */
+        border-radius: 50%; /* Make the radio button circular */
+        margin-right: 5px;
+        vertical-align: middle;
+        outline: none;
+        cursor: pointer;
+    }
+
+        input[type="radio"]:checked {
+            background-color: #007bff; /* Blue color when radio button is checked */
+            border: 2px solid #007bff; /* Blue border for checked radio buttons */
+        }
+
+    .btn-secondary {
+        background-color: #6c757d; /* Gray color for the "Back to List" button */
+        color: #ffffff; /* White text on the button */
+    }
+
+    .btn-info {
+        background-color: #17a2b8; /* Turquoise color for the "Submit Survey" button */
+        color: #ffffff; /* White text on the button */
+    }
+</style>
+<form asp-action="Edit">
+    <table class="table table-bordered mt-4">
+        <thead class="thead-light">
+            <tr>
+                <th>@Html.DisplayNameFor(model => model.question.question)</th>
+                <th>Answer</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <input type="hidden" name="surveyTakenID" value="@item.surveyTaken_id">
+                <input type="hidden" name="selectedSurveyId" value="@item.survey_id">
+            }
+
+
+            @foreach (var questionType in Model.SelectMany(vm => vm.questionSetType.Select(q => q.questionType)).Distinct())
+            {
+                <tr>
+                    <th colspan="4">@questionType.questionType_name</th>
+                </tr>
+
+                @foreach (var question in Model.SelectMany(vm => vm.questionSet.Where(q => q.questionType_id == questionType.questionType_id)))
+                {
+                    var answerForQuestion = Model.FirstOrDefault()?.answersSet.FirstOrDefault(a => a.question_id == question.question_id);
+
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => question.question)
+                        </td>
+                        <td>
+                            @for (int value = 1; value <= 10; value++)
+                            {
+                                <label class="mr-2">
+                                    @{
+                                        var isChecked = (answerForQuestion != null && answerForQuestion.answer == value);
+                                    }
+                                    <input type="radio" name="answers[@question.question_id]" value="@value" @(isChecked ? "checked" : "") required />
+                                    @value
+                                </label>
+                            }
+                        </td>
+                    </tr>
+                }
+            }
+            
+            <tr>
+                <td colspan="3">
+                    <button type="submit" class="btn btn-info ml-2">Edit</button> |
+                    <a asp-action="Index" asp-area="Staff" asp-controller="SurveyTakens" class="btn btn-secondary">Back to List</a>                    
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</form>

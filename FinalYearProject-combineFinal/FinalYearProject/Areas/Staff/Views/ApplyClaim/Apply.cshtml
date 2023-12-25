@@ -1,0 +1,51 @@
+﻿@model FinalYearProject.Models.EmployeeClaim
+
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Apply</h1>
+
+<h4>Claim</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Apply" enctype="multipart/form-data">
+            <div asp-validation-summary="All" class="text-danger"></div>
+            <input type="hidden" asp-for="staff_id" />
+            <div class="form-group">
+                <label asp-for="date_apply" class="control-label"></label>
+                <input asp-for="date_apply" class="form-control" readonly />
+                <span asp-validation-for="date_apply" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="claim_id" class="control-label"></label>
+                <input asp-for="claim_id" class="form-control" readonly/>
+                <span asp-validation-for="claim_id" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="claimAmount" class="control-label"></label>
+                <input asp-for="claimAmount" class="form-control" />
+                <span asp-validation-for="claimAmount" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="claim_reason" class="control-label"></label>
+                <input asp-for="claim_reason" class="form-control" />
+                <span asp-validation-for="claim_reason" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="claimFile" class="control-label"></label>
+                <input type="file" name="claimFile" class="form-control" />
+            </div>
+            <div class="form-group" style="margin-top: 10px;">
+                <input type="submit" asp-route-id="@Model" value="Apply" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index" class="btn btn-secondary mt-3">Back to list</a>
+</div>
+

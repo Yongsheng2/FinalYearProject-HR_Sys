@@ -1,0 +1,92 @@
+﻿@model FinalYearProject.Models.ViewModels.EmployeeLeaveListVM
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-route-id="@Model.owner.employee_id" asp-action="Create">Create New</a>
+</p>
+<div>
+    <h6>@Model.owner.paidLeaveHourLeft hours of paid leave left.</h6>
+    <h6>@Model.owner.paidLeaveOnBargain hours of paid leave is pending approval.</h6>
+    <h6>@Model.owner.sickLeaveHourLeft hours of sick leave left.</h6>
+    <h6>@Model.owner.sickLeaveOnBargain hours of sick leave is pending approval.</h6>
+</div>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.displayLeave.EmployeeDetails)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.displayLeave.approval_status)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.displayLeave.ApprovedByEmployee)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.displayLeave.date_created)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.displayLeave.leave_start)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.displayLeave.leave_end)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.displayLeave.leave_reason)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.displayLeave.response_message)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.displayLeave.doc_filepath)
+            </th>
+            <th>
+
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+    @foreach (var item in Model.leaveApplied) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.EmployeeDetails.employee_id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.approval_status)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ApprovedByEmployee.employee_id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.date_created)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.leave_start)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.leave_end)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.leave_reason)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.response_message)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.doc_filepath)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.leave_id">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.leave_id">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.leave_id">Delete</a>
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>

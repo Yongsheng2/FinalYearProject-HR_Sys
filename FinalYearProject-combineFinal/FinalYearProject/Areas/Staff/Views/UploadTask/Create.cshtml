@@ -1,0 +1,55 @@
+﻿@model FinalYearProject.Models.EmployeeTask
+
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Create</h1>
+
+<h4>Task</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Apply" enctype="multipart/form-data">
+            <div asp-validation-summary="All" class="text-danger"></div>
+            <input type="hidden" asp-for="current_admin" value="someDefaultValue" />
+            <div class="form-group">
+                <label asp-for="date_upload" class="control-label"></label>
+                <input asp-for="date_upload" class="form-control" readonly />
+                <span asp-validation-for="date_upload" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="emtask_id" class="control-label"></label>
+                <input asp-for="emtask_id" class="form-control" readonly />
+                <span asp-validation-for="emtask_id" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="emtask_title" class="control-label"></label>
+                <input asp-for="emtask_title" class="form-control" />
+                <span asp-validation-for="emtask_title" class="text-danger"></span>
+            </div>
+            <div class="form-group row">
+                <label asp-for="staff_id" class="col-form-label">Staff Handler</label>
+                <select asp-for="staff_id" class="form-control" asp-items="ViewBag.staff_id"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="emtask_duration" class="control-label"></label>
+                <input asp-for="emtask_duration" class="form-control" />
+                <span asp-validation-for="emtask_duration" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="emtaskDetail" class="control-label"></label>
+                <input type="file" name="emtaskDetail" class="form-control" />
+            </div>
+            <div class="form-group" style="margin-top : 10px">
+                <input type="submit" asp-route-id="@Model" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index" class="btn btn-secondary mt-3">Back to list</a>
+</div>
+

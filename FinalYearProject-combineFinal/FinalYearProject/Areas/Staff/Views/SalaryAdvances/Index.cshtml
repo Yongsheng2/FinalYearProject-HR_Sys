@@ -1,0 +1,97 @@
+﻿@model IEnumerable<FinalYearProject.Models.SalaryAdvance>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+<div class="row">
+    <div class="col-6">
+        <h2 class="text-info">Salary Advance</h2>
+    </div>
+    <div class="col-6 text-right">
+        <p>
+            <a asp-action="Create" class="btn btn-info">Create New</a>
+        </p>
+    </div>
+</div>
+@if (ViewData["ErrorMessage"] != null)
+{
+    <div class="alert alert-danger">
+        @Html.Raw(TempData["ErrorMessage"])
+    </div>
+}
+
+ <table class="table table-striped border">
+        <tr class="table-secondary">
+            <th>
+                @Html.DisplayNameFor(model => model.advance_id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.reason)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.amount)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.time_to_payback)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.status)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.request_date)
+            </th>
+            <th>
+              Decide by
+            </th>
+            <th></th>
+        </tr>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.advance_id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.reason)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.amount)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.time_to_payback)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.status)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.request_date)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ApprovedEmployeeDetails.employee_id)
+                </td>
+                
+                <td>
+                    @if (item.status == "pending                                           ")
+                    {
+                    <a class="btn btn-success text-white" asp-action="Edit" asp-route-Id="@item.advance_id">
+                        
+                            <i class="fas fa-edit"></i>
+                        </a>                                         
+                    }
+
+                    @if (item.status == "pending                                           ")
+                    {
+                        <a class="btn btn-danger text-white" asp-action="Delete" asp-route-Id="@item.advance_id">
+                            <i class="fas fa-trash-alt"></i>
+                        </a>
+                    }                  
+                </td>
+            </tr>
+        }
+</table>
+
+
